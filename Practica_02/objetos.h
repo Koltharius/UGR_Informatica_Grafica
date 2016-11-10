@@ -38,7 +38,7 @@ public:
   void draw_solido(float r, float g, float b);
   void draw_solido_ajedrez(float r1, float g1, float b1, float r2, float g2,
                            float b2);
-
+  void draw_franjas(float r1, float g1, float b1, float r2, float g2, float b2);
   vector<_vertex3i> caras;
 };
 

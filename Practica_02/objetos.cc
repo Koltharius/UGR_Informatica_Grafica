@@ -74,6 +74,55 @@ void _triangulos3D::draw_solido_ajedrez(float r1, float g1, float b1, float r2,
   glEnd();
 }
 
+void _triangulos3D::draw_franjas(float r1, float g1, float b1, float r2,
+                                 float g2, float b2) {
+  int v1, v2, v3;
+  int tapa = 8 * 2;
+  int cara = 2 * (11 - 1);
+
+  glBegin(GL_TRIANGLES);
+  int k;
+
+  for (int j = 0, k = 0; j < caras.size() - tapa; j += cara, k++) {
+    if (k % 2 == 0) {
+      glColor3f(r1, g1, b1);
+    } else if (k % 2 == 1) {
+      glColor3f(r2, g2, b2);
+    }
+
+    for (int i = j; i < j + cara; i++) {
+      v1 = caras[i]._0;
+      v2 = caras[i]._1;
+      v3 = caras[i]._2;
+      glVertex3f(vertices[v1].x, vertices[v1].y, vertices[v1].z);
+      glVertex3f(vertices[v2].x, vertices[v2].y, vertices[v2].z);
+      glVertex3f(vertices[v3].x, vertices[v3].y, vertices[v3].z);
+    }
+  }
+
+  for (int i = caras.size() - tapa; i < caras.size() - (tapa / 2); i++) {
+    glColor3f(r1, g1, b1);
+    v1 = caras[i]._0;
+    v2 = caras[i]._1;
+    v3 = caras[i]._2;
+    glVertex3f(vertices[v1].x, vertices[v1].y, vertices[v1].z);
+    glVertex3f(vertices[v2].x, vertices[v2].y, vertices[v2].z);
+    glVertex3f(vertices[v3].x, vertices[v3].y, vertices[v3].z);
+  }
+
+  for (int i = caras.size() - tapa / 2; i < caras.size(); i++) {
+    glColor3f(r2, g2, b2);
+    v1 = caras[i]._0;
+    v2 = caras[i]._1;
+    v3 = caras[i]._2;
+    glVertex3f(vertices[v1].x, vertices[v1].y, vertices[v1].z);
+    glVertex3f(vertices[v2].x, vertices[v2].y, vertices[v2].z);
+    glVertex3f(vertices[v3].x, vertices[v3].y, vertices[v3].z);
+  }
+
+  glEnd();
+}
+
 //*************************************************************************
 // clase cubo
 //*************************************************************************
@@ -205,6 +254,7 @@ _revolucion::_revolucion(_ply &ply, int eje, float numPasos) {
   caras = ply.caras;
   numPerfil = numPasos;
   float angulo = (2 * M_PI) / numPerfil;
+
   numVerticesPerfil = vertices.size();
 
   if (eje == X) {
@@ -243,6 +293,7 @@ void _revolucion::getPerfilCaras() {
       verticeAux2 = i * numVerticesPerfil + j + 1;
 
       _vertex3i caraAux;
+
       caraAux._0 = verticeAux1;
       caraAux._1 = verticeAux2;
       caraAux._2 = (verticeAux1 + numVerticesPerfil) % verticesTotales;
@@ -274,6 +325,7 @@ void _revolucion::getPerfilCaras() {
 
 void _revolucion::getTapas(int eje) {
   int verticesTotales = vertices.size();
+
   _vertex3f verticesTapaArriba = _vertex3f(0.0, 0.0, 0.0);
   _vertex3f verticesTapaAbajo = _vertex3f(0.0, 0.0, 0.0);
 

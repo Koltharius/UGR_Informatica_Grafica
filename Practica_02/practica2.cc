@@ -136,6 +136,8 @@ void draw_objects() {
       _revolucion.draw_solido(2, 0, 1);
     else if (modo == "a")
       _revolucion.draw_solido_ajedrez(1, 1, 0, 0, 0, 0.3);
+    else if (modo == "f")
+      _revolucion.draw_franjas(1, 1, 0, 0, 0, 0.3);
   }
 }
 
@@ -202,6 +204,12 @@ void normal_keys(unsigned char Tecla1, int x, int y) {
   // Modo Ajedrez
   case 'A':
     modo = "a";
+    glutPostRedisplay();
+    break;
+
+  // Modo Ajedrez
+  case 'F':
+    modo = "f";
     glutPostRedisplay();
     break;
 
