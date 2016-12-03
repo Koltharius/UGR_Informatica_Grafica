@@ -415,7 +415,7 @@ _revolucion &_revolucion::operator=(const _revolucion &otro) {
 }
 
 //*************************************************************************
-// clase munieco
+// clase minecraft
 //*************************************************************************
 
 _minecraft::_minecraft() {
@@ -423,17 +423,8 @@ _minecraft::_minecraft() {
   minimo_brazos = -25;
   maximo_piernas = 15;
   minimo_piernas = -15;
-  maximo_cabeza = 45;
-  minimo_cabeza = -45;
-  peso = 4.0;
-  ancho_cuerpo = 2.5;
-  longitud_cuerpo = 1.0;
-  altura_brazo = 3.5;
-  ancho_brazo = 1.0;
-  longitud_brazo = 1.0;
-  altura_pierna = 4.5;
-  ancho_pierna = 1.0;
-  longitud_pierna = 1.0;
+  maximo_cabeza = 20;
+  minimo_cabeza = -20;
   posicion.resize(5);
   posicion.at(0) = 0; // brazo derecho
   posicion.at(1) = 0; // brazo izquierdo
@@ -457,10 +448,10 @@ void _minecraft::draw_minecraft(int modo, float r1, float g1, float b1,
 }
 
 void _minecraft::cuerpo(int modo, float r, float g, float b) {
-  glTranslatef(0, peso / 2, 0);
+  glTranslatef(0, 2, 0);
   glPushMatrix();
-  glScalef(ancho_cuerpo, peso, longitud_cuerpo);
-  draw_minecraft(modo, r, g, b, 1.0, 0.2, 1.0);
+  glScalef(4, 4, 1);
+  draw_minecraft(modo, r, g, b, 0, 0, 0);
   glPopMatrix();
 }
 
@@ -468,43 +459,42 @@ void _minecraft::brazo_derecho(int modo, float r, float g, float b) {
   glColor3f(r, g, b);
 
   glPushMatrix();
-  glTranslatef(-(ancho_cuerpo) / 2, (peso - altura_brazo) / 2, 0);
-  glTranslatef(0, altura_brazo / 2, 0);
+  glTranslatef(-2.5, 0.25, 0);
+  glTranslatef(0, 1.75, 0);
   glRotatef(-posicion.at(0), 1, 0, 0);
-  glTranslatef(0, -altura_brazo / 2, 0);
+  glTranslatef(0, -1.75, 0);
   glPushMatrix();
-  glScalef(ancho_brazo, altura_brazo, longitud_brazo);
-  draw_minecraft(modo, r, g, b, 1.0, 0.2, 1.0);
+  glScalef(1, 3.5, 1);
+  draw_minecraft(modo, r, g, b, 0, 0, 0);
   glPopMatrix();
 }
 
 void _minecraft::mano_derecha(int modo, float r, float g, float b) {
-  glTranslatef(0, -(altura_brazo + ancho_brazo) / 2, 0);
+  glTranslatef(0, -2.25, 0);
   glColor3f(r, g, b);
-  glScalef(ancho_brazo, ancho_brazo, longitud_brazo);
-  draw_minecraft(modo, r, g, b, 1.0, 0.2, 1.0);
+  glScalef(1, 1, 1);
+  draw_minecraft(modo, r, g, b, 0, 0, 0);
   glPopMatrix();
 }
 
 void _minecraft::brazo_izquierdo(int modo, float r, float g, float b) {
   glColor3f(r, g, b);
-
   glPushMatrix();
-  glTranslatef((ancho_cuerpo) / 2, (peso - altura_brazo) / 2, 0);
-  glTranslatef(0, altura_brazo / 2, 0);
+  glTranslatef(2.5, 0.25, 0);
+  glTranslatef(0, 1.75, 0);
   glRotatef(-posicion.at(1), 1, 0, 0);
-  glTranslatef(0, -altura_brazo / 2, 0);
+  glTranslatef(0, -1.75, 0);
   glPushMatrix();
-  glScalef(ancho_brazo, altura_brazo, longitud_brazo);
-  draw_minecraft(modo, r, g, b, 1.0, 0.2, 1.0);
+  glScalef(1, 3.5, 1);
+  draw_minecraft(modo, r, g, b, 0, 0, 0);
   glPopMatrix();
 }
 
 void _minecraft::mano_izquierda(int modo, float r, float g, float b) {
-  glTranslatef(0, -(altura_brazo + ancho_brazo) / 2, 0);
+  glTranslatef(0, -2.25, 0);
   glColor3f(r, g, b);
-  glScalef(ancho_brazo, ancho_brazo, longitud_brazo);
-  draw_minecraft(modo, r, g, b, 1.0, 0.2, 1.0);
+  glScalef(1, 1, 1);
+  draw_minecraft(modo, r, g, b, 0, 0, 0);
   glPopMatrix();
 }
 
@@ -512,19 +502,18 @@ void _minecraft::pierna_derecha(int modo, float r, float g, float b) {
   glColor3f(r, g, b);
   glPushMatrix();
   glRotatef(posicion.at(2), -1, 0, 0);
-  glTranslatef(-(ancho_cuerpo - ancho_pierna) / 2, -(peso + altura_pierna) / 2,
-               0);
+  glTranslatef(-1.5, -4.25, 0);
   glPushMatrix();
-  glScalef(ancho_pierna, altura_pierna, longitud_pierna);
-  draw_minecraft(modo, r, g, b, 1.0, 0.2, 1.0);
+  glScalef(1, 4.5, 1);
+  draw_minecraft(modo, r, g, b, 0, 0, 0);
   glPopMatrix();
 }
 
 void _minecraft::pie_derecho(int modo, float r, float g, float b) {
-  glTranslatef(0, -(altura_pierna + ancho_pierna) / 2, 0);
+  glTranslatef(0, -2.75, 0);
   glColor3f(r, g, b);
-  glScalef(ancho_pierna, ancho_pierna, longitud_pierna);
-  draw_minecraft(modo, r, g, b, 1.0, 0.2, 1.0);
+  glScalef(1, 1, 1);
+  draw_minecraft(modo, r, g, b, 0, 0, 0);
   glPopMatrix();
 }
 
@@ -532,19 +521,18 @@ void _minecraft::pierna_izquierda(int modo, float r, float g, float b) {
   glColor3f(r, g, b);
   glPushMatrix();
   glRotatef(posicion.at(3), -1, 0, 0);
-  glTranslatef((ancho_cuerpo - ancho_pierna) / 2, -(peso + altura_pierna) / 2,
-               0);
+  glTranslatef(1.5, -4.25, 0);
   glPushMatrix();
-  glScalef(ancho_pierna, altura_pierna, longitud_pierna);
-  draw_minecraft(modo, r, g, b, 1.0, 0.2, 1.0);
+  glScalef(1, 4.5, 1);
+  draw_minecraft(modo, r, g, b, 0, 0, 0);
   glPopMatrix();
 }
 
 void _minecraft::pie_izquierdo(int modo, float r, float g, float b) {
-  glTranslatef(0, -(altura_pierna + ancho_pierna) / 2, 0);
+  glTranslatef(0, -2.75, 0);
   glColor3f(r, g, b);
-  glScalef(ancho_pierna, ancho_pierna, longitud_pierna);
-  draw_minecraft(modo, r, g, b, 1.0, 0.2, 1.0);
+  glScalef(1, 1, 1);
+  draw_minecraft(modo, r, g, b, 0, 0, 0);
   glPopMatrix();
 }
 
@@ -552,22 +540,33 @@ void _minecraft::cabeza(int modo, float r, float g, float b) {
   glColor3f(r, g, b);
   glPushMatrix();
   glRotatef(posicion.at(4), 0, 1, 0);
-  glTranslatef(0, peso / 2 + 1, 0);
+  glTranslatef(0, 3, 0);
   if (modo == 3 || modo == 4) {
     glutSolidCube(2);
   } else if (modo == 1 || modo == 2) {
     glutWireCube(2);
   }
+
+  // Test
+  // glTranslatef(0, 2.2, 0);
+  // _ply *ply = NULL;
+  // char fichero[] = "heart.ply";
+  // ply = new _ply(fichero);
+  // glScalef(0.5, 0.5, 0.5);
+  // if (modo == 1) {
+  //   ply->draw_puntos(r, g, b, 3);
+  // } else if (modo == 2) {
+  //   ply->draw_aristas(r, g, b, 1);
+  // } else if (modo == 3) {
+  //   ply->draw_solido(r, g, b);
+  // } else if (modo == 4) {
+  //   ply->draw_solido_ajedrez(r, g, b, 0, 0, 0);
+  // }
+
   glPopMatrix();
 }
 
 void _minecraft::munieco(int modo) {
-  glDepthFunc(GL_LEQUAL);
-  glEnable(GL_DEPTH_TEST);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  gluPerspective(60.0, 1.0, 1.0, 100.0);
-  glMatrixMode(GL_MODELVIEW);
   glTranslatef(0.0, 0.0, 0.0);
 
   cuerpo(modo, 0, 42, 42);

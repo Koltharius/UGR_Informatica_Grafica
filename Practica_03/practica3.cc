@@ -286,17 +286,19 @@ void normal_keys(unsigned char Tecla1, int x, int y) {
     break;
 
   case '.':
-    minecraft.aumentar_brazos(0);
-    minecraft.disminuir_brazos(1);
+    minecraft.aumentar_brazos(1);
+    minecraft.disminuir_brazos(0);
     minecraft.aumentar_piernas(2);
     minecraft.disminuir_piernas(3);
+    minecraft.mover_cabeza_dcha(4);
     break;
 
   case '-':
-    minecraft.disminuir_brazos(0);
-    minecraft.aumentar_brazos(1);
+    minecraft.disminuir_brazos(1);
+    minecraft.aumentar_brazos(0);
     minecraft.disminuir_piernas(2);
     minecraft.aumentar_piernas(3);
+    minecraft.mover_cabeza_izda(4);
     break;
   }
 

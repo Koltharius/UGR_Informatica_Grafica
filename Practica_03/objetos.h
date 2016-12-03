@@ -114,15 +114,6 @@ private:
   float minimo_piernas;
   float maximo_cabeza;
   float minimo_cabeza;
-  float peso;
-  float ancho_cuerpo;
-  float longitud_cuerpo;
-  float altura_brazo;
-  float ancho_brazo;
-  float longitud_brazo;
-  float altura_pierna;
-  float ancho_pierna;
-  float longitud_pierna;
   vector<float> posicion;
   _cubo *cubo;
 
